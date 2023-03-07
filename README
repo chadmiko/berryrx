@@ -1,0 +1,24 @@
+# BERRY RX
+This is an unfinished hobby project comparing Medicare Part D plan formularies to published Generic drug prices.  Releasing it open source hoping that someone can use the ideas to improve the code and make it more widely available.
+
+
+### Background
+Generic drugs have been creeping into higher and higher tiers on Medicare Part D formularies.  Significant price discrepancies can occur between the Plan's price and the Cash price (i.e. a $9 cash price Rx ends up Tier 3 on a formulary often subjecting the beneficiary to a $500+ deductible and $40+ copays).
+
+### Requirements
+* Python 9
+* Django
+* SQLite
+* Resdac Formulary Files [https://resdac.org/cms-data/files/part-d-formulary-file] 
+* Blueberry Pharmacy published recent generic price file
+
+NOTE:
+* You'll have to find a way to map RXCUI's to NDCs as the Generic pricing APIs tend to give NDCs but Resdac files use RXCUI's.  I use https://lhncbc.nlm.nih.gov/RxNav/APIs/api-RxNorm.getNDCs.html for this mapping.  Mind the rate limits they enforce them :)
+
+
+### Note on Output
+It does NOT give actual copay amounts for the Part D plans as the actual amount paid for a prescription by Medicare Part D beneficiary will vary depending upon coverage stage, LIS qualification, Medicaid status, etc.  (although pulling at least the plan's preferred pharmacy copay could be added)
+
+But it does provide a comparison of recently published generic price data (currently only looking at Blueberry Pharmacy's Live Pricing data - prices.blueberrypharmacy.com) to the drug's tier on a given Part D plan's formulary.  Given that most Tier 3's and higher have significant copay's ($40+) and the deductible usually applies, 
+
+In other words, you can identify the most significant price discrepancies between actual cash generic prices and Tiering on part D plans.    
